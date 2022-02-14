@@ -30,7 +30,8 @@ class FirstTabViewController: UITabBarController  {
         img.image = UIImage(named: "test2")
         img.translatesAutoresizingMaskIntoConstraints = false
         img.isUserInteractionEnabled = true
-        img.contentMode = .scaleAspectFit
+//        img.contentMode = .scaleToFill
+        img.contentMode = .scaleAspectFill
         return img
     }()
     
@@ -47,7 +48,7 @@ class FirstTabViewController: UITabBarController  {
     
     let createTripSchedule: BaseButton = {
         let btn = BaseButton()
-        btn.layer.backgroundColor = BaseColor.main.cgColor
+        btn.layer.backgroundColor = BaseColor.point.cgColor
         btn.isEnabled = true
         btn.tintColor = BaseColor.title
         btn.setImage(UIImage(named: "createTripSchedule"), for: .normal)
@@ -263,12 +264,11 @@ extension FirstTabViewController {
         contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         
-//        contentViewBackgroundImage.topAnchor.constraint(equalTo: scrollView.superview!.topAnchor).isActive = true
-//        contentViewBackgroundImage.topAnchor.constraint(equalTo: view.topAnchor, constant: view.safeAreaInsets.top).isActive = true
         contentViewBackgroundImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         contentViewBackgroundImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-//        contentViewBackgroundImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        contentViewBackgroundImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
 //        contentViewBackgroundImage.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        contentViewBackgroundImage.bottomAnchor.constraint(equalTo: firstView.topAnchor).isActive = true
         
         searchBtn.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100).isActive = true
         searchBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40).isActive = true
@@ -278,7 +278,6 @@ extension FirstTabViewController {
         
         helloLbl.bottomAnchor.constraint(equalTo: createTripSchedule.topAnchor, constant: -26).isActive = true
         helloLbl.leadingAnchor.constraint(equalTo: createTripSchedule.leadingAnchor, constant: 5).isActive = true
-        helloLbl.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 132).isActive = true
 
         createTripSchedule.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         createTripSchedule.heightAnchor.constraint(equalToConstant: CGFloat(Btn.height)).isActive = true
