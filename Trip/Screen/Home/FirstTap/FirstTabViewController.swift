@@ -35,13 +35,24 @@ class FirstTabViewController: UITabBarController  {
         return img
     }()
     
-    private let searchBtn: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(named: "searchImage"), for: .normal)
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.adjustsImageWhenHighlighted = false
-        btn.imageEdgeInsets = .init(top: 5, left: 5, bottom: 5, right: 5)
+//    lazy var searchBtn: UIButton = {
+//        let btn = UIButton()
+//        btn.setImage(UIImage(named: "searchImage"), for: .normal)
+//        btn.translatesAutoresizingMaskIntoConstraints = false
+//        btn.adjustsImageWhenHighlighted = false
+//        btn.imageEdgeInsets = .init(top: 5, left: 5, bottom: 5, right: 5)
+//        btn.isEnabled = true
+//        return btn
+//    }()
+    
+    lazy var searchBtn: BaseButton = {
+        let btn = BaseButton()
+        btn.layer.backgroundColor = BaseColor.point.cgColor
         btn.isEnabled = true
+        btn.tintColor = BaseColor.title
+        btn.setImage(UIImage(named: "createTripSchedule"), for: .normal)
+        btn.titleEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 0)
+        btn.setTitle("여행 일정 만들기    ", for: .normal)
         return btn
     }()
     
@@ -205,8 +216,9 @@ class FirstTabViewController: UITabBarController  {
         
         searchBtn.rx.tap
             .subscribe(onNext:{
-                let rootVC = MapViewController()
-                self.navigationController?.pushViewController(rootVC, animated: true)
+                print("tapSearch")
+//                let rootVC = MapViewController()
+//                self.navigationController?.pushViewController(rootVC, animated: true)
             })
             .disposed(by: disposeBag)
     }
@@ -270,10 +282,10 @@ extension FirstTabViewController {
 //        contentViewBackgroundImage.heightAnchor.constraint(equalToConstant: 400).isActive = true
         contentViewBackgroundImage.bottomAnchor.constraint(equalTo: firstView.topAnchor).isActive = true
         
-        searchBtn.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100).isActive = true
+        searchBtn.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
         searchBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40).isActive = true
         searchBtn.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        searchBtn.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        searchBtn.heightAnchor.constraint(equalToConstant: 230).isActive = true
         
         
         helloLbl.bottomAnchor.constraint(equalTo: createTripSchedule.topAnchor, constant: -26).isActive = true
